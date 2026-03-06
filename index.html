@@ -17,7 +17,6 @@
       --mid: #72726e;
       --faint: #c4c4be;
       --rule: #e6e5e0;
-      --hover-bg: #f2f1ee;
     }
 
     body {
@@ -37,14 +36,15 @@
       justify-content: center;
       text-align: center;
       padding: 40px 24px;
-      gap: 16px;
+      gap: 18px;
+      position: relative;
     }
 
     .hero-name {
       font-family: 'Instrument Serif', serif;
       font-weight: 400;
-      font-size: clamp(48px, 9vw, 96px);
-      letter-spacing: -0.025em;
+      font-size: clamp(52px, 10vw, 108px);
+      letter-spacing: -0.03em;
       line-height: 1;
       color: var(--ink);
       opacity: 0;
@@ -52,11 +52,13 @@
     }
 
     .hero-role {
-      font-size: clamp(13px, 1.6vw, 15px);
+      font-size: clamp(12px, 1.5vw, 14px);
       font-weight: 400;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--mid);
+      max-width: 520px;
+      line-height: 1.6;
       opacity: 0;
       animation: rise 0.9s cubic-bezier(0.16,1,0.3,1) forwards 0.3s;
     }
@@ -69,36 +71,30 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 8px;
       opacity: 0;
       animation: rise 0.8s ease forwards 0.9s;
     }
 
-    .hero-scroll span {
-      font-size: 10px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--faint);
+    .scroll-arrow {
+      width: 22px;
+      height: 22px;
+      border-right: 2px solid var(--mid);
+      border-bottom: 2px solid var(--mid);
+      transform: rotate(45deg);
+      animation: bounce 2s ease-in-out infinite 1.5s;
     }
 
-    .scroll-line {
-      width: 1px;
-      height: 40px;
-      background: linear-gradient(to bottom, var(--faint), transparent);
-      animation: pulse 2s ease-in-out infinite 1.5s;
+    @keyframes bounce {
+      0%, 100% { transform: rotate(45deg) translateY(0); opacity: 0.8; }
+      50% { transform: rotate(45deg) translateY(6px); opacity: 0.3; }
     }
 
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
+    /* ─── SECTION WRAPPER ─── */
+    .section {
+      padding: clamp(72px, 10vw, 120px) clamp(24px, 6vw, 72px);
     }
 
-    /* ─── SERVICES ─── */
-    .services {
-      padding: clamp(80px, 12vw, 140px) clamp(24px, 6vw, 72px);
-    }
-
-    .services-label {
+    .section-label {
       font-size: 10px;
       font-weight: 500;
       letter-spacing: 0.2em;
@@ -108,10 +104,11 @@
       text-align: center;
     }
 
+    /* ─── CARDS ─── */
     .cards {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 12px;
+      gap: 10px;
       max-width: 1200px;
       margin: 0 auto;
     }
@@ -119,11 +116,11 @@
     .card {
       background: var(--white);
       border: 1px solid var(--rule);
-      padding: 36px 32px;
+      padding: 34px 30px;
       display: flex;
       flex-direction: column;
-      gap: 14px;
-      transition: border-color 0.25s, transform 0.25s;
+      gap: 12px;
+      transition: border-color 0.22s, transform 0.22s;
       cursor: default;
     }
 
@@ -132,14 +129,9 @@
       transform: translateY(-2px);
     }
 
-    .card-icon {
-      font-size: 20px;
-      line-height: 1;
-    }
-
     .card-title {
       font-family: 'Instrument Serif', serif;
-      font-size: 22px;
+      font-size: 21px;
       font-weight: 400;
       line-height: 1.2;
       color: var(--ink);
@@ -152,20 +144,9 @@
     }
 
     /* ─── MISSIONS ─── */
-    .missions {
-      padding: 0 clamp(24px, 6vw, 72px) clamp(80px, 12vw, 140px);
-      max-width: 1200px;
+    .missions-inner {
+      max-width: 860px;
       margin: 0 auto;
-    }
-
-    .missions-label {
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--faint);
-      margin-bottom: 32px;
-      text-align: center;
     }
 
     .mission-list {
@@ -175,8 +156,8 @@
 
     .mission {
       display: grid;
-      grid-template-columns: 120px 1fr;
-      gap: 24px;
+      grid-template-columns: 110px 1fr;
+      gap: 28px;
       align-items: baseline;
       padding: 18px 0;
       border-bottom: 1px solid var(--rule);
@@ -185,17 +166,18 @@
     .mission:first-child { border-top: 1px solid var(--rule); }
 
     .mission-sector {
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 500;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--faint);
+      padding-top: 2px;
     }
 
     .mission-desc {
       font-size: 14px;
       color: var(--mid);
-      line-height: 1.6;
+      line-height: 1.65;
     }
 
     .mission-desc strong {
@@ -203,20 +185,38 @@
       font-weight: 500;
     }
 
+    .mission-desc a {
+      color: var(--mid);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* ─── PE NOTE ─── */
+    .pe-note {
+      max-width: 860px;
+      margin: 32px auto 0;
+      padding-top: 28px;
+      border-top: 1px solid var(--rule);
+      font-size: 12.5px;
+      color: var(--faint);
+      line-height: 1.7;
+      font-style: italic;
+    }
+
     /* ─── CONTACT ─── */
     .contact {
-      padding: clamp(60px, 8vw, 100px) 24px;
+      padding: clamp(64px, 8vw, 100px) 24px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 32px;
+      gap: 28px;
       border-top: 1px solid var(--rule);
       text-align: center;
     }
 
     .contact-text {
       font-family: 'Instrument Serif', serif;
-      font-size: clamp(28px, 5vw, 48px);
+      font-size: clamp(30px, 5vw, 52px);
       font-weight: 400;
       font-style: italic;
       color: var(--ink);
@@ -226,19 +226,19 @@
     .contact-btn {
       display: inline-block;
       font-family: 'Instrument Sans', sans-serif;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 500;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--white);
       background: var(--ink);
-      padding: 16px 40px;
+      padding: 15px 40px;
       text-decoration: none;
-      transition: background 0.2s, transform 0.2s;
+      transition: background 0.2s, transform 0.18s;
     }
 
     .contact-btn:hover {
-      background: #333;
+      background: #2e2e2b;
       transform: translateY(-1px);
     }
 
@@ -259,18 +259,11 @@
       align-items: center;
       flex-wrap: wrap;
       gap: 8px;
+      border-top: 1px solid var(--rule);
     }
 
-    .foot-copy {
-      font-size: 11px;
-      color: var(--faint);
-    }
-
-    .foot-langs {
-      font-size: 11px;
-      color: var(--faint);
-      letter-spacing: 0.1em;
-    }
+    .foot-copy { font-size: 11px; color: var(--faint); }
+    .foot-langs { font-size: 11px; color: var(--faint); letter-spacing: 0.1em; }
 
     /* ─── ANIM ─── */
     @keyframes rise {
@@ -287,78 +280,99 @@
 <body>
 
   <!-- HERO -->
-  <section class="hero" style="position:relative">
+  <section class="hero">
     <h1 class="hero-name">Benjamin Rey</h1>
-    <p class="hero-role">Consultant — Produit · Data · Logiciel · IA</p>
+    <p class="hero-role">Consultant — Produit, Data & IA<br/>en environnement réglementé</p>
     <div class="hero-scroll">
-      <div class="scroll-line"></div>
-      <span>Scroll</span>
+      <div class="scroll-arrow"></div>
     </div>
   </section>
 
   <!-- SERVICES -->
-  <section class="services">
-    <div class="services-label">Services</div>
+  <section class="section">
+    <div class="section-label">Services</div>
     <div class="cards">
 
       <div class="card">
-        <div class="card-icon">◻</div>
         <div class="card-title">Direction de produit</div>
         <div class="card-body">Cadrage fonctionnel, architecture produit, priorisation et coordination technique. De la définition des besoins au déploiement.</div>
       </div>
 
       <div class="card">
-        <div class="card-icon">◻</div>
         <div class="card-title">Architecture & plateformes de données</div>
         <div class="card-body">Conception de pipelines, modélisation, choix d'outillage et intégration dans des environnements à contraintes fortes de sécurité et de conformité.</div>
       </div>
 
       <div class="card">
-        <div class="card-icon">◻</div>
-        <div class="card-title">Réglementation, conformité & audit SI</div>
-        <div class="card-body">RGPD, AI Act, DSA/DMA, SFDR — et audit des systèmes d'information dans le cadre de la réforme sur la facturation électronique.</div>
+        <div class="card-title">Développement logiciel & CTO de mission</div>
+        <div class="card-body">Développement full stack, conception d'architectures logicielles, lead technique et organisation du travail d'équipe (CI/CD, sécurité, traçabilité).</div>
       </div>
 
       <div class="card">
-        <div class="card-icon">◻</div>
         <div class="card-title">Stratégie & intégration IA</div>
-        <div class="card-body">Évaluation de maturité, identification des cas d'usage, intégration de solutions NLP et d'IA générative dans des processus métiers existants.</div>
+        <div class="card-body">Évaluation de maturité, identification des cas d'usage, intégration de solutions d'IA générative dans des processus métiers. Évaluation de conformité de modèles génératifs.</div>
       </div>
 
       <div class="card">
-        <div class="card-icon">◻</div>
+        <div class="card-title">Régulation & politique numérique européenne</div>
+        <div class="card-body">Analyse et traduction opérationnelle du cadre réglementaire : AI Act, RGPD, DSA/DMA, SFDR. Connaissance directe des institutions et du processus législatif de l'UE.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Conformité & audit SI</div>
+        <div class="card-body">Audit des systèmes d'information, mise en conformité réglementaire, gestion du risque opérationnel — dont la réforme sur la facturation électronique.</div>
+      </div>
+
+      <div class="card">
         <div class="card-title">EdTech & ingénierie pédagogique</div>
         <div class="card-body">Conception de dispositifs d'apprentissage en ligne, personnalisation des parcours par l'IA, structuration pédagogique et plateformes éducatives.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Formation & interventions</div>
+        <div class="card-body">Modules en enseignement supérieur et formation professionnelle : IA en organisation, régulation numérique européenne, stratégie produit et data. Interventions en français et en anglais.</div>
       </div>
 
     </div>
   </section>
 
   <!-- MISSIONS -->
-  <section style="max-width:1200px; margin: 0 auto; padding: 0 clamp(24px, 6vw, 72px) clamp(80px,12vw,140px)">
-    <div class="missions-label">Dernières missions</div>
-    <div class="mission-list">
+  <section class="section" style="padding-top:0">
+    <div class="section-label">Dernières missions</div>
+    <div class="missions-inner">
+      <div class="mission-list">
 
-      <div class="mission">
-        <span class="mission-sector">Finance</span>
-        <span class="mission-desc">Chef de projet & consultant data chez <strong>Mirova (Groupe Natixis / BPCE)</strong> — conception et déploiement d'une plateforme de gestion de portefeuilles et de reporting réglementaire ESG.</span>
+        <div class="mission">
+          <span class="mission-sector">Finance</span>
+          <span class="mission-desc">Chef de projet & consultant data chez <strong>Mirova (Groupe Natixis / BPCE)</strong> — conception et déploiement d'une plateforme de gestion de portefeuilles et de reporting réglementaire ESG.</span>
+        </div>
+
+        <div class="mission">
+          <span class="mission-sector">Santé</span>
+          <span class="mission-desc">Restructuration de l'architecture data et développement d'une application d'accès sécurisé pour <strong>Quamed</strong>, réseau international d'évaluation pharmaceutique et de santé humanitaire.</span>
+        </div>
+
+        <div class="mission">
+          <span class="mission-sector">Éducation</span>
+          <span class="mission-desc">Fondateur et CTO d'une plateforme SaaS d'apprentissage des langues déployée dans <strong>100+ pays</strong>, avec des partenariats institutionnels incluant <strong>Air France</strong> et <strong>Euronews</strong>. Solution récompensée par un prix Tech for Teachers et recommandée par des institutions comme l'<strongé d'Oxford.</span>
+        </div>
+
+        <div class="mission">
+          <span class="mission-sector">IA</span>
+          <span class="mission-desc">Évaluation de conformité et red teaming de modèles d'IA générative pour un <strong>LLM leader du marché</strong> (contrat Mercor, États-Unis).</span>
+        </div>
+
+        <div class="mission">
+          <span class="mission-sector">Open source</span>
+          <span class="mission-desc">Conception d'une infrastructure de données modulaire et IA-ready pour les fonds de marchés privés — data warehouse, modèles canoniques, dashboard.</span>
+        </div>
+
+        <div class="mission">
+          <span class="mission-sector">Union européenne</span>
+          <span class="mission-desc">Ancien administrateur au <strong>Parlement européen</strong>. Dossiers : intégration européenne, commerce international, relations extérieures.</span>
+        </div>
+
       </div>
-
-      <div class="mission">
-        <span class="mission-sector">Santé</span>
-        <span class="mission-desc">Restructuration de l'architecture data et développement d'une application d'accès sécurisé pour <strong>Quamed</strong>, réseau international d'évaluation pharmaceutique et de santé humanitaire.</span>
-      </div>
-
-      <div class="mission">
-        <span class="mission-sector">Éducation</span>
-        <span class="mission-desc">Plateforme d'apprentissage des langues déployée dans <strong>100+ pays</strong>, avec des partenariats incluant <strong>Air France</strong>, <strong>Euronews</strong> et plusieurs universités dont Oxford.</span>
-      </div>
-
-      <div class="mission">
-        <span class="mission-sector">Open source</span>
-        <span class="mission-desc">Conception d'<strong>AMOS</strong>, une infrastructure de données modulaire et IA-ready pour les fonds de marchés privés — data warehouse, modèles canoniques, dashboard. <a href="https://github.com/open-amos" style="color:inherit; text-decoration:underline; text-underline-offset:3px;">github.com/open-amos</a></span>
-      </div>
-
     </div>
   </section>
 
@@ -368,7 +382,7 @@
     <a class="contact-btn" href="mailto:benjamin@benjaminrey.com">Me contacter</a>
     <div class="contact-meta">
       <span>benjamin@benjaminrey.com</span>
-      <span>Paris/Lyon · FR / EN</span>
+      <span>Paris · Lyon · Marseille · Toulouse · FR / EN</span>
     </div>
   </section>
 
